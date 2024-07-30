@@ -1,7 +1,24 @@
-.registration__content {
-  height: 600px;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+.registration {
+  &__content {
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.error {
+  &__container {
+    margin-top: 10px; /* Отступ сверху */
+  }
+  &__message {
+    color: red;
+    font-size: 12px;
+    height: 16px; /* Фиксированная высота для предотвращения изменения размера инпутов */
+  }
 }
