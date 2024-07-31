@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../../../core/store/authSlice';
+import { useNavigate } from 'react-router-dom'; // Удален useDispatch и useSelector
 import s from './styles.module.scss';
 
 export const Authorization = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     login: '',
@@ -13,7 +11,7 @@ export const Authorization = () => {
   });
   const [error, setError] = useState('');
 
-  const { status, token } = useSelector(state => state.auth);
+  // const { status, token } = useSelector(state => state.auth); // Удален useSelector
 
   const handleChange = e => {
     setFormData({
@@ -27,13 +25,18 @@ export const Authorization = () => {
       setError('Введены неверные данные');
     } else {
       setError('');
-      dispatch(loginUser(formData)).then(action => {
-        if (action.type === 'auth/login/fulfilled') {
-          alert('Вход выполнен');
-        } else {
-          setError('Введены неверные данные');
-        }
-      });
+      // Имитация успешного входа
+      setTimeout(() => {
+        alert('Вход выполнен (моковые данные)');
+        navigate('/main'); // Перенаправление на главную страницу после входа
+      }, 1000);
+      // dispatch(loginUser(formData)).then(action => {
+      //   if (action.type === 'auth/login/fulfilled') {
+      //     alert('Вход выполнен');
+      //   } else {
+      //     setError('Введены неверные данные');
+      //   }
+      // });
     }
   };
 
@@ -42,27 +45,34 @@ export const Authorization = () => {
   };
 
   return (
-    <div className={s.autorization__container}>
-      <div className={s.autorization__content}>
-        <div className={s.autorization__logo}>Ночлежка</div>
+    <div className={s.authorization__container}>
+      <div className={s.authorization__content}>
+        <div className={s.authorization__logo}>Ночлежка</div>
         <input
-          className={s.autorization__login}
+          className={s.authorization__input}
           name="login"
           placeholder="Логин"
           onChange={handleChange}
         />
         <input
-          className={s.autorization__password}
+          className={s.authorization__input}
           name="password"
           type="password"
           placeholder="Пароль"
           onChange={handleChange}
         />
-        <div className={s.autorization__btns}>
-          <button onClick={handleRegisterClick}>Регистрация</button>
-          <button>Забыли пароль</button>
+        <div className={s.authorization__btns}>
+          <button
+            className={s.authorization__btn}
+            onClick={handleRegisterClick}
+          >
+            Регистрация
+          </button>
+          <button className={s.authorization__btn}>Забыли пароль</button>
         </div>
-        <button onClick={handleLogin}>Начать игру</button>
+        <button className={s.authorization__btn} onClick={handleLogin}>
+          Начать игру
+        </button>
         {error && <div className={s.error}>{error}</div>}
       </div>
     </div>
