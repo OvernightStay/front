@@ -1,0 +1,58 @@
+.home {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+    color: white;
+  }
+  &__slider {
+    position: relative;
+    width: 100px;
+    height: 50px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  &__slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    transition: opacity 0.5s;
+  }
+  &__progressBar {
+    width: 80%;
+    height: 20px;
+    background-color: gray;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  &__progress {
+    height: 100%;
+    background-color: green;
+    transition: width 0.1s;
+  }
+  &__button {
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    top: calc(100vh - 350px);
+    font-size: 16px;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+      background-color: rgb(1, 75, 1);
+    }
+  }
+}

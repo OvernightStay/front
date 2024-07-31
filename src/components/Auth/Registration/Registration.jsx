@@ -1,7 +1,6 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux'; // Удален useDispatch
 import { useForm } from 'react-hook-form';
-import { registerUser } from '../../../core/store/authSlice';
 import s from './styles.module.scss';
 import {
   mailRegExp,
@@ -9,7 +8,7 @@ import {
 } from '../Authorization/validations/validationAuth';
 
 export const Registration = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch(); // Удален useDispatch
   const {
     register,
     handleSubmit,
@@ -17,13 +16,20 @@ export const Registration = () => {
   } = useForm();
 
   const onSubmit = data => {
-    dispatch(registerUser(data)).then(action => {
-      if (action.type === 'auth/register/fulfilled') {
-        alert('Вы успешно зарегистрированы');
-      } else {
-        alert('Ошибка регистрации');
-      }
-    });
+    console.log('Form data:', data); // Логируем данные формы
+    // Имитация успешной регистрации
+    setTimeout(() => {
+      alert('Вы успешно зарегистрированы (моковые данные)');
+      // console.log('Registration data:', data); // Логируем данные регистрации
+    }, 1000);
+    // dispatch(registerUser(data)).then(action => {
+    //   if (action.type === 'auth/register/fulfilled') {
+    //     alert('Вы успешно зарегистрированы');
+    //   } else {
+    //     console.error('Registration error:', action.error.message); // Логируем ошибку
+    //     alert(`Ошибка регистрации: ${action.error.message}`);
+    //   }
+    // });
   };
 
   return (
@@ -35,25 +41,25 @@ export const Registration = () => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <input
-            className={s.registration__name}
+            className={s.registration__input}
             name="first_name"
             placeholder="Имя"
             {...register('first_name', { required: 'Имя обязательно' })}
           />
           <input
-            className={s.registration__surname}
+            className={s.registration__input}
             name="last_name"
             placeholder="Фамилия"
             {...register('last_name', { required: 'Фамилия обязательна' })}
           />
           <input
-            className={s.registration__phone}
+            className={s.registration__input}
             name="phone"
             placeholder="Телефон"
             {...register('phone', { required: 'Телефон обязателен' })}
           />
           <input
-            className={s.registration__mail}
+            className={s.registration__input}
             name="email"
             placeholder="Email"
             {...register('email', {
@@ -65,7 +71,7 @@ export const Registration = () => {
             })}
           />
           <input
-            className={s.registration__password}
+            className={s.registration__input}
             name="password"
             type="password"
             placeholder="Пароль"
@@ -78,22 +84,30 @@ export const Registration = () => {
               },
             })}
           />
-          <button type="submit">Зарегистрироваться</button>
+          <button className={s.registration__btn} type="submit">
+            Зарегистрироваться
+          </button>
           <div className={s.error__container}>
             {errors.first_name && (
-              <p className={s.error__message}>{errors.first_name.message}</p>
+              <span className={s.error__message}>
+                {errors.first_name.message}
+              </span>
             )}
             {errors.last_name && (
-              <p className={s.error__message}>{errors.last_name.message}</p>
+              <span className={s.error__message}>
+                {errors.last_name.message}
+              </span>
             )}
             {errors.phone && (
-              <p className={s.error__message}>{errors.phone.message}</p>
+              <span className={s.error__message}>{errors.phone.message}</span>
             )}
             {errors.email && (
-              <p className={s.error__message}>{errors.email.message}</p>
+              <span className={s.error__message}>{errors.email.message}</span>
             )}
             {errors.password && (
-              <p className={s.error__message}>{errors.password.message}</p>
+              <span className={s.error__message}>
+                {errors.password.message}
+              </span>
             )}
           </div>
         </form>
