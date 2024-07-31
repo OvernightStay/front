@@ -1,35 +1,18 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// Моковые данные для регистрации
-const mockRegister = async userData => {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve({ data: { message: 'Registration successful' } });
-    }, 1000);
-  });
-};
+const API_URL = import.meta.env.VITE_API_URL;
 
-// Моковые данные для авторизации
-const mockLogin = async userData => {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve({ data: { token: 'mock-token' } });
-    }, 1000);
-  });
-};
-
-// Асинхронные действия
 export const registerUser = createAsyncThunk(
   'auth/register',
   async userData => {
-    const response = await mockRegister(userData);
+    const response = await axios.post(`${API_URL}/register/`, userData);
     return response.data;
   },
 );
 
 export const loginUser = createAsyncThunk('auth/login', async userData => {
-  const response = await mockLogin(userData);
+  const response = await axios.post(`${API_URL}/login/`, userData);
   return response.data;
 });
 

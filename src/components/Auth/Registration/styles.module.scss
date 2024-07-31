@@ -14,11 +14,11 @@
 
 .error {
   &__container {
-    margin-top: 10px; /* Отступ сверху */
+    margin-top: 10px;
   }
   &__message {
     color: red;
     font-size: 12px;
-    height: 16px; /* Фиксированная высота для предотвращения изменения размера инпутов */
+    height: 16px;
   }
 }
