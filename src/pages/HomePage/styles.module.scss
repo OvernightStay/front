@@ -7,52 +7,68 @@
     height: 100vh;
     background-color: black;
     color: white;
+    overflow: hidden;
+    position: relative;
+  }
+  &__text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    text-align: center;
+    transition: opacity 2s ease-in-out;
+    opacity: 0;
+  }
+  &__text.fadeIn {
+    opacity: 1;
+  }
+  &__text.fadeOut {
+    opacity: 0;
   }
   &__slider {
-    position: relative;
-    width: 100px;
-    height: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 2s ease-in-out;
   }
   &__slide {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: gray;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 24px;
-    transition: opacity 0.5s;
+    transition: opacity 2s ease-in-out; 
+    opacity: 0;
+  }
+  &__slide.fadeIn {
+    opacity: 1;
+  }
+  &__slide.fadeOut {
+    opacity: 0;
   }
   &__progressBar {
+    position: absolute;
+    bottom: 50%;
     width: 80%;
     height: 20px;
     background-color: gray;
-    margin-bottom: 20px;
     border-radius: 10px;
     overflow: hidden;
-    position: relative;
   }
   &__progress {
     height: 100%;
     background-color: green;
-    transition: width 0.1s;
-  }
-  &__button {
-    position: absolute;
-    width: 200px;
-    height: 50px;
-    top: calc(100vh - 350px);
-    font-size: 16px;
-    background-color: green;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    &:hover {
-      background-color: rgb(1, 75, 1);
-    }
+    transition: width 0.1s ease-in-out;
   }
 }
+
+
