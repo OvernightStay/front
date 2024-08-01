@@ -1,6 +1,6 @@
 import React from 'react';
-import { useDispatch } from 'react-redux'; // Удален useDispatch
 import { useForm } from 'react-hook-form';
+import CustomInput from '../../ui/CustomInput/CustomInput';
 import s from './styles.module.scss';
 import {
   mailRegExp,
@@ -40,49 +40,59 @@ export const Registration = () => {
           className={s.registration__form}
           onSubmit={handleSubmit(onSubmit)}
         >
-          <input
+          <CustomInput
             className={s.registration__input}
             name="first_name"
             placeholder="Имя"
-            {...register('first_name', { required: 'Имя обязательно' })}
+            register={register}
+            validation={{ required: 'Имя обязательно' }}
+            errors={errors}
           />
-          <input
+          <CustomInput
             className={s.registration__input}
             name="last_name"
             placeholder="Фамилия"
-            {...register('last_name', { required: 'Фамилия обязательна' })}
+            register={register}
+            validation={{ required: 'Фамилия обязательна' }}
+            errors={errors}
           />
-          <input
+          <CustomInput
             className={s.registration__input}
             name="phone"
             placeholder="Телефон"
-            {...register('phone', { required: 'Телефон обязателен' })}
+            register={register}
+            validation={{ required: 'Телефон обязателен' }}
+            errors={errors}
           />
-          <input
+          <CustomInput
             className={s.registration__input}
             name="email"
             placeholder="Email"
-            {...register('email', {
+            register={register}
+            validation={{
               required: 'Email обязателен',
               pattern: {
                 value: mailRegExp,
                 message: 'Неверный формат email',
               },
-            })}
+            }}
+            errors={errors}
           />
-          <input
+          <CustomInput
             className={s.registration__input}
             name="password"
             type="password"
             placeholder="Пароль"
-            {...register('password', {
+            register={register}
+            validation={{
               required: 'Пароль обязателен',
               pattern: {
                 value: passwordRegExp,
                 message:
                   'Пароль должен содержать хотя бы одну заглавную букву, одну строчную букву, одну цифру и один специальный символ',
               },
-            })}
+            }}
+            errors={errors}
           />
           <button className={s.registration__btn} type="submit">
             Зарегистрироваться
