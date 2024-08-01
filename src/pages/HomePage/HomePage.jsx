@@ -1,51 +1,75 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Authorization } from '../../components/Auth/Authorization';
 import s from './styles.module.scss';
 
 export const HomePage = () => {
+  const [showText, setShowText] = useState(false);
+  const [showProgressBar, setShowProgressBar] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [currentSlide, setCurrentSlide] = useState(1);
-  const [showAuthorization, setShowAuthorization] = useState(false);
-  const slides = [1, 2, 3, 4, 5];
+  const [currentSlide, setCurrentSlide] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress(prev => Math.min(prev + 1, 100));
-    }, 100);
+    const textTimeout = setTimeout(() => {
+      setShowText(true);
+    }, 2000);
 
-    return () => clearInterval(interval);
+    const textFadeOutTimeout = setTimeout(() => {
+      setShowText(false);
+      setShowProgressBar(true);
+    }, 5000);
+
+    return () => {
+      clearTimeout(textTimeout);
+      clearTimeout(textFadeOutTimeout);
+    };
   }, []);
 
   useEffect(() => {
+    if (!showProgressBar) return;
+
+    const totalDuration = 15000;
+    const slideDuration = 3000;
+
+    const progressInterval = setInterval(() => {
+      setProgress(prev => {
+        const newProgress = prev + 100 / (totalDuration / 20);
+        if (newProgress >= 100) {
+          clearInterval(progressInterval);
+
+          setTimeout(() => navigate('/authorization'), 500);
+          return 100;
+        }
+        return newProgress;
+      });
+    }, 20);
+
     const slideInterval = setInterval(() => {
-      setCurrentSlide(prev => (prev % slides.length) + 1);
-    }, 2000);
+      setCurrentSlide(prev => (prev + 1) % 5);
+    }, slideDuration);
 
-    return () => clearInterval(slideInterval);
-  }, [slides.length]);
+    return () => {
+      clearInterval(progressInterval);
+      clearInterval(slideInterval);
+    };
+  }, [showProgressBar, navigate]);
 
-  const handleButtonClick = () => {
-    setShowAuthorization(true);
-    navigate('/authorization');
-  };
+  const slideColors = ['#629F42', '#FFE74F', '#4f64ff', '#f400fd', '#696969'];
 
   return (
     <div className={s.home__container}>
-      {showAuthorization ? (
-        <Authorization />
-      ) : (
+      <div className={`${s.home__text} ${showText ? s.fadeIn : s.fadeOut}`}>
+        Ночлежка
+      </div>
+      {showProgressBar && (
         <>
           <div className={s.home__slider}>
-            {slides.map((slide, index) => (
+            {slideColors.map((color, index) => (
               <div
                 key={index}
-                className={s.home__slide}
-                style={{ opacity: currentSlide === slide ? 1 : 0 }}
-              >
-                {slide}
-              </div>
+                className={`${s.home__slide} ${currentSlide === index ? s.fadeIn : s.fadeOut}`}
+                style={{ backgroundColor: color }}
+              ></div>
             ))}
           </div>
           <div className={s.home__progressBar}>
@@ -54,11 +78,6 @@ export const HomePage = () => {
               style={{ width: `${progress}%` }}
             ></div>
           </div>
-          {progress === 100 && (
-            <button className={s.home__button} onClick={handleButtonClick}>
-              Войти
-            </button>
-          )}
         </>
       )}
     </div>
