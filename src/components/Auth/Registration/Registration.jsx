@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import CustomButton from '../../ui/CustomButton/CustomButton';
 import CustomInput from '../../ui/CustomInput/CustomInput';
 import s from './styles.module.scss';
@@ -10,6 +11,7 @@ import {
 
 export const Registration = () => {
   // const dispatch = useDispatch(); // Удален useDispatch
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -31,6 +33,10 @@ export const Registration = () => {
     //     alert(`Ошибка регистрации: ${action.error.message}`);
     //   }
     // });
+  };
+
+  const handleAuthorizeClick = () => {
+    navigate('/authorization');
   };
 
   return (
@@ -99,6 +105,7 @@ export const Registration = () => {
             className={s.registration__btn}
             type="submit"
             buttonText="Зарегистрироваться"
+            onClick={handleAuthorizeClick}
           />
           <div className={s.error__container}>
             {errors.first_name && (
