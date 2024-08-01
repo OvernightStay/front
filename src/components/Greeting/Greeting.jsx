@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import CustomButton from '../ui/CustomButton/CustomButton';
 import s from './styles.module.scss';
-import cn from 'classnames';
 
 export const Greeting = () => {
   const navigate = useNavigate();
@@ -15,8 +15,13 @@ export const Greeting = () => {
       <div className={s.greeting__content}>
         <div className={s.greeting__title}>Ночлежка</div>
         <div className={s.greeting__description}>Игра для сотрудников</div>
-        <button onClick={handleButtonClick}>Войти</button>
+        <CustomButton
+          onClick={handleButtonClick}
+          buttonText="Войти"
+          className={s.greeting__btn}
+        />
       </div>
     </div>
   );
 };
+
