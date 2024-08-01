@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import CustomButton from '../../ui/CustomButton/CustomButton';
 import CustomInput from '../../ui/CustomInput/CustomInput';
 import s from './styles.module.scss';
 import {
@@ -94,9 +95,11 @@ export const Registration = () => {
             }}
             errors={errors}
           />
-          <button className={s.registration__btn} type="submit">
-            Зарегистрироваться
-          </button>
+          <CustomButton
+            className={s.registration__btn}
+            type="submit"
+            buttonText="Зарегистрироваться"
+          />
           <div className={s.error__container}>
             {errors.first_name && (
               <span className={s.error__message}>

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import s from './styles.module.scss';
 import CustomInput from '../../ui/CustomInput/CustomInput';
+import CustomButton from '../../ui/CustomButton/CustomButton';
+import s from './styles.module.scss';
 
 export const Authorization = () => {
   // const dispatch = useDispatch();
@@ -63,17 +64,22 @@ export const Authorization = () => {
           onChange={handleChange}
         />
         <div className={s.authorization__btns}>
-          <button
+          <CustomButton
             className={s.authorization__btn}
             onClick={handleRegisterClick}
-          >
-            Регистрация
-          </button>
-          <button className={s.authorization__btn}>Забыли пароль</button>
+            buttonText="Регистрация"
+          />
+          <CustomButton
+            className={s.authorization__btn}
+            onClick={() => alert('Reset password functionality')}
+            buttonText="Забыли пароль"
+          />
         </div>
-        <button className={s.authorization__btn} onClick={handleLogin}>
-          Начать игру
-        </button>
+        <CustomButton
+          className={s.authorization__btn}
+          onClick={handleLogin}
+          buttonText="Начать игру"
+        />
         {error && <div className={s.error}>{error}</div>}
       </div>
     </div>
