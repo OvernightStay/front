@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Удален useDispatch и useSelector
+import { useNavigate } from 'react-router-dom';
 import s from './styles.module.scss';
+import CustomInput from '../../ui/CustomInput/CustomInput';
 
 export const Authorization = () => {
   // const dispatch = useDispatch();
@@ -48,13 +49,13 @@ export const Authorization = () => {
     <div className={s.authorization__container}>
       <div className={s.authorization__content}>
         <div className={s.authorization__logo}>Ночлежка</div>
-        <input
+        <CustomInput
           className={s.authorization__input}
           name="login"
           placeholder="Логин"
           onChange={handleChange}
         />
-        <input
+        <CustomInput
           className={s.authorization__input}
           name="password"
           type="password"
