@@ -61,7 +61,7 @@ export const HomePage = () => {
   return (
     <div className={s.home__container}>
       <div className={`${s.home__text} ${showText ? s.fadeIn : s.fadeOut}`}>
-        <img src={logo} alt="Logo" />
+        <img src={logo} alt={'Logo'} />
       </div>
       {showProgressBar && (
         <>

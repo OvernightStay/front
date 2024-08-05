@@ -47,60 +47,88 @@ export const Registration = () => {
           className={s.registration__form}
           onSubmit={handleSubmit(onSubmit)}
         >
-          <CustomInput
-            className={s.registration__input}
-            name="first_name"
-            placeholder="Имя"
-            register={register}
-            validation={{ required: 'Имя обязательно' }}
-            errors={errors}
-          />
-          <CustomInput
-            className={s.registration__input}
-            name="last_name"
-            placeholder="Фамилия"
-            register={register}
-            validation={{ required: 'Фамилия обязательна' }}
-            errors={errors}
-          />
-          <CustomInput
-            className={s.registration__input}
-            name="phone"
-            placeholder="Телефон"
-            register={register}
-            validation={{ required: 'Телефон обязателен' }}
-            errors={errors}
-          />
-          <CustomInput
-            className={s.registration__input}
-            name="email"
-            placeholder="Email"
-            register={register}
-            validation={{
-              required: 'Email обязателен',
-              pattern: {
-                value: mailRegExp,
-                message: 'Неверный формат email',
-              },
-            }}
-            errors={errors}
-          />
-          <CustomInput
-            className={s.registration__input}
-            name="password"
-            type="password"
-            placeholder="Пароль"
-            register={register}
-            validation={{
-              required: 'Пароль обязателен',
-              pattern: {
-                value: passwordRegExp,
-                message:
-                  'Пароль должен содержать хотя бы одну заглавную букву, одну строчную букву, одну цифру и один специальный символ',
-              },
-            }}
-            errors={errors}
-          />
+          <div className={s.registration__form__main}>
+            <CustomInput
+              className={s.registration__input}
+              name="first_name"
+              placeholder="Имя"
+              register={register}
+              validation={{ required: 'Имя обязательно' }}
+              errors={errors}
+            />
+            <CustomInput
+              className={s.registration__input}
+              name="last_name"
+              placeholder="Фамилия"
+              register={register}
+              validation={{ required: 'Фамилия обязательна' }}
+              errors={errors}
+            />
+            <CustomInput
+              className={s.registration__input}
+              name="phone"
+              placeholder="Телефон"
+              register={register}
+              validation={{ required: 'Телефон обязателен' }}
+              errors={errors}
+            />
+            <CustomInput
+              className={s.registration__input}
+              name="email"
+              placeholder="Email"
+              register={register}
+              validation={{
+                required: 'Email обязателен',
+                pattern: {
+                  value: mailRegExp,
+                  message: 'Неверный формат email',
+                },
+              }}
+              errors={errors}
+            />
+            <CustomInput
+              className={s.registration__input}
+              name="login"
+              placeholder="Логин"
+              register={register}
+              validation={{
+                required: 'Логин обязателен',
+              }}
+              errors={errors}
+            />
+            <CustomInput
+              className={s.registration__input}
+              name="password"
+              type="password"
+              placeholder="Пароль"
+              register={register}
+              validation={{
+                required: 'Пароль обязателен',
+                pattern: {
+                  value: passwordRegExp,
+                  message:
+                    'Пароль должен содержать хотя бы одну заглавную букву, одну строчную букву, одну цифру и один специальный символ',
+                },
+              }}
+              errors={errors}
+            />
+            <CustomInput
+              className={s.registration__input}
+              name="repeat password"
+              type="password"
+              placeholder="Пароль"
+              register={register}
+              validation={{
+                required: 'Пароль обязателен',
+                pattern: {
+                  value: passwordRegExp,
+                  message:
+                    'Пароль должен содержать хотя бы одну заглавную букву, одну строчную букву, одну цифру и один специальный символ',
+                },
+              }}
+              errors={errors}
+            />
+          </div>
           <CustomButton
             className={s.registration__btn}
             type="submit"
