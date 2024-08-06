@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import CustomInput from '../../ui/CustomInput/CustomInput';
-import CustomButton from '../../ui/CustomButton/CustomButton';
+import { CustomInput } from '../../ui/CustomInput';
+import { CustomButton } from '../../ui/CustomButton';
 import logo_small from '../../../assets/images/logo_auth.svg';
 import s from './styles.module.scss';
 
@@ -34,7 +34,7 @@ export const Authorization = () => {
       setError('');
       setTimeout(() => {
         alert('Вход выполнен (моковые данные)');
-        navigate('/main');
+        navigate('/character');
       }, 1000);
     } else {
       setError('Данные введены неверно или не установлен чекбокс');

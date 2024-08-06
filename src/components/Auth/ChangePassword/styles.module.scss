@@ -13,6 +13,10 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 400px;
+    height: 400px; /* фиксированная высота для всех шагов */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   &__logo {
     margin-bottom: 1rem;
@@ -40,6 +44,10 @@
       background-color: rgb(65, 64, 64);
     }
   }
+}
+
+.message__container {
+  height: 40px; /* фиксированная высота для сообщений */
 }
 
 .message {

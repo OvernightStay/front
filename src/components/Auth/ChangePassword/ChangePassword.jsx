@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CustomInput from '../../ui/CustomInput/CustomInput';
-import CustomButton from '../../ui/CustomButton/CustomButton';
+import { CustomInput } from '../../ui/CustomInput';
+import { CustomButton } from '../../ui/CustomButton';
 import logo_small from '../../../assets/images/logo_auth.svg';
 import s from './styles.module.scss';
 
@@ -121,9 +121,11 @@ export const ChangePassword = () => {
               onClick={handleSubmitNewPassword}
               buttonText="Сохранить"
             />
-            {message && <div className={s.message}>{message}</div>}
           </>
         )}
+        <div className={s.message__container}>
+          {message && <div className={s.message}>{message}</div>}
+        </div>
       </div>
     </div>
   );

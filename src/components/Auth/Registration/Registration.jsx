@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import CustomButton from '../../ui/CustomButton/CustomButton';
-import CustomInput from '../../ui/CustomInput/CustomInput';
+import { CustomButton } from '../../ui/CustomButton';
+import { CustomInput } from '../../ui/CustomInput';
 import logo_small from '../../../assets/images/logo_auth.svg';
 import s from './styles.module.scss';
 import {
@@ -78,40 +78,18 @@ export const Registration = () => {
               />
               <CustomInput
                 className={s.registration__input}
-                name="last_name"
-                placeholder="Фамилия"
-                register={register}
-                validation={{ required: 'Фамилия обязательна' }}
-                errors={errors}
-              />
-              <CustomInput
-                className={s.registration__input}
-                name="phone"
-                placeholder="Телефон"
-                register={register}
-                validation={{ required: 'Телефон обязателен' }}
-                errors={errors}
-              />
-              <CustomInput
-                className={s.registration__input}
-                name="email"
-                placeholder="Email"
-                register={register}
-                validation={{
-                  required: 'Email обязателен',
-                  pattern: {
-                    value: mailRegExp,
-                    message: 'Неверный формат email',
-                  },
-                }}
-                errors={errors}
-              />
-              <CustomInput
-                className={s.registration__input}
                 name="login"
                 placeholder="Логин"
                 register={register}
                 validation={{ required: 'Логин обязателен' }}
+                errors={errors}
+              />
+              <CustomInput
+                className={s.registration__input}
+                name="last_name"
+                placeholder="Фамилия"
+                register={register}
+                validation={{ required: 'Фамилия обязательна' }}
                 errors={errors}
               />
               <CustomInput
@@ -132,6 +110,14 @@ export const Registration = () => {
               />
               <CustomInput
                 className={s.registration__input}
+                name="phone"
+                placeholder="Телефон"
+                register={register}
+                validation={{ required: 'Телефон обязателен' }}
+                errors={errors}
+              />
+              <CustomInput
+                className={s.registration__input}
                 name="repeat_password"
                 type="password"
                 placeholder="Повторите пароль"
@@ -140,6 +126,20 @@ export const Registration = () => {
                   required: 'Повторите пароль',
                   validate: value =>
                     value === watch('password') || 'Пароли не совпадают',
+                }}
+                errors={errors}
+              />
+              <CustomInput
+                className={s.registration__input}
+                name="email"
+                placeholder="Email"
+                register={register}
+                validation={{
+                  required: 'Email обязателен',
+                  pattern: {
+                    value: mailRegExp,
+                    message: 'Неверный формат email',
+                  },
                 }}
                 errors={errors}
               />
