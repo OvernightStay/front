@@ -11,6 +11,7 @@ export const Authorization = () => {
     login: '',
     password: '',
   });
+  const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState('');
 
   const handleChange = e => {
@@ -20,15 +21,23 @@ export const Authorization = () => {
     });
   };
 
+  const handleCheckboxChange = e => {
+    setRememberMe(e.target.checked);
+  };
+
   const handleLogin = () => {
-    if (!formData.login || !formData.password) {
-      setError('Введены неверные данные');
-    } else {
+    if (
+      formData.login === 'ivan123' &&
+      formData.password === 'Password1!' &&
+      rememberMe
+    ) {
       setError('');
       setTimeout(() => {
         alert('Вход выполнен (моковые данные)');
         navigate('/main');
       }, 1000);
+    } else {
+      setError('Данные введены неверно или не установлен чекбокс');
     }
   };
 
@@ -52,7 +61,12 @@ export const Authorization = () => {
         />
         <div className={s.authorization__options}>
           <label>
-            <input style={{ marginRight: '20px' }} type="checkbox" />
+            <input
+              style={{ marginRight: '20px' }}
+              type="checkbox"
+              checked={rememberMe}
+              onChange={handleCheckboxChange}
+            />
             Запомнить учетные данные
           </label>
         </div>
@@ -60,11 +74,7 @@ export const Authorization = () => {
           <Link to="/registration" className={s.authorization__link}>
             Зарегистрироваться
           </Link>
-          <Link
-            to="#"
-            onClick={() => alert('Reset password functionality')}
-            className={s.authorization__link}
-          >
+          <Link to="/changepassword" className={s.authorization__link}>
             Забыл пароль
           </Link>
         </div>

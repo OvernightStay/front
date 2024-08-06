@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Authorization } from './components/Auth/Authorization';
 import { Registration } from './components/Auth/Registration';
 import { HomePage } from './pages/HomePage';
+import { ChangePassword } from './components/Auth/ChangePassword/ChangePassword';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/authorization" element={<Authorization />} />
         <Route path="/registration" element={<Registration />} />
+        <Route path="/changepassword" element={<ChangePassword />} />
       </Routes>
     </Router>
   );
